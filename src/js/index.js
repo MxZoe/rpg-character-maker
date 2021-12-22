@@ -1,14 +1,15 @@
 import $ from "jquery";
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './css/styles.css';
-import Ability from "./ability";
-import Character from "./character";
+//import './css/styles.css';
+import Ability from "./ability.js";
+import Character from "./character.js";
 
 
 $(document).ready(function(){
   let currentCharacter;
   $("#submit").submit(function(event){
+    
     let charName = $("#charName").val();
     let charRace = $("#charRace").val();
     let charClass = $("charClass").val();
@@ -30,13 +31,13 @@ $(document).ready(function(){
 
     currentCharacter = new Character(charName, charRace, charClass, abilityArray);
 
-    $("#displayDiv").append(currentCharacter.name);
-    $("#displayDiv").append(currentCharacter.race);
-    $("#displayDiv").append(currentCharacter.class);
-    $("#displayDiv").append(currentCharacter.abilities);
-
+    $("#displayText").append(currentCharacter.name);
+    $("#displayText").append(currentCharacter.race);
+    $("#displayText").append(currentCharacter.class);
+    $("#displayText").append(currentCharacter.abilities);
+    event.preventDefault();
     
-
+    
   })
 
 });

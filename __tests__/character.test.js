@@ -7,6 +7,6 @@ describe('Character', () =>{
     expect(testCharacter.name).toEqual("zoe");
     expect(testCharacter.race).toEqual("human");
     expect(testCharacter.charClass).toEqual("ranger");
-    expect(testCharacter.abilityScores).toEqual([]);
+    expect(testCharacter.abilities).toEqual([]);
   });
 })

@@ -4,4 +4,4 @@ export default function Character(name, race, charClass, abilities){
   this.race = race;
   this.charClass = charClass;
   this.abilities = abilities;
-};
+}
