@@ -1,7 +1,7 @@
-export default function Character(name, race, charClass, abilityScores){
+
+export default function Character(name, race, charClass, abilities){
   this.name = name;
   this.race = race;
   this.charClass = charClass;
-  this.abilityScores = abilityScores;
+  this.abilities = abilities;
 };
-
