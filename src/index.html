@@ -10,7 +10,7 @@
     </div>
     <div class="row">
       <div id="builder" class="col-md-6">
-        <form id="formOne">
+        <div id="nameStuff">
           <div class="form-group">
             <label for="charName">Character Name</label>
             <input type="text" id="charName" class="form-control">
@@ -28,43 +28,184 @@
               <option value="Wizard">Wizard</option>
               <option value="Ranger">Ranger</option>
             </select>
-           
-            
-            <div id="pointBuy">
-             
+          </div><!--form group end-->
+        </div><!--nameStuff end-->
+        <div id="pointBuy">
+          <div class="row" id="increaseButtons">
+            <div class="col-sm-2">
+              <button type='click' class="btn btn-primary" id="strUp">+</button>
+            </div>
+            <div class="col-sm-2">
+              <button type='click' class="btn btn-primary" id="dexUp">+</button>
+            </div>
+            <div class="col-sm-2">
+              <button type='click' class="btn btn-primary" id="conUp">+</button>
+            </div>
+            <div class="col-sm-2">
+              <button type='click' class="btn btn-primary" id="intUp">+</button>
+            </div>
+            <div class="col-sm-2">
+              <button type='click' class="btn btn-primary" id="wisUp">+</button>
+            </div>
+            <div class="col-sm-2">
+              <button type='click' class="btn btn-primary" id="chaUp">+</button>
+            </div>
+          </div><!--end row one-->
+          <!--add divs here-->
+          <div class="row" id="stats">
+            <div class="col-sm-2">
+              <div class="row">
+                <p>Strength</p>
+              </div>
+              <div class="row">
+                <p id="strNum"></p>
+              </div>
+            </div>
+            <div class="col-sm-2">
+              <div class="row">
+                <p>Dexterity</p>
+              </div>
+              <div class="row">
+                <p id="dexNum"></p>
+              </div>
+            </div>
+            <div class="col-sm-2">
+              <div class="row">
+                <p>Constitution</p>
+              </div>
+              <div class="row">
+                <p id="conNum"></p>
+              </div>
+            </div>
+            <div class="col-sm-2">
+              <div class="row">
+                <p>Intelligence</p>
+              </div>
+              <div class="row">
+                <p id="intNum"></p>
+              </div>
+            </div>
+            <div class="col-sm-2">
+              <div class="row">
+                <p>Wisdom</p>
+              </div>
+              <div class="row">
+                <p id="wisNum"></p>
+              </div>
+            </div>
+            <div class="col-sm-2">
+              <div class="row">
+                <p>Charisma</p>
+              </div>
+              <div class="row">
+                <p id="chaNum"></p>
+              </div>
+            </div>
           </div>
-          <button type="click" class="btn btn-primary" id="nextButtonOne">Next</button>
-            <button type="submit" class="btn btn-primary" id="submitButton">Submit</button>
-        </div>
-        </form>
-      </div>
+          <div class="row" id="decreaseButtons">
+            <div class="col-sm-2">
+              <button type='click' class="btn btn-primary" id="strDown">-</button>
+            </div>
+            <div class="col-sm-2">
+              <button type='click' class="btn btn-primary" id="dexDown">-</button>
+            </div>
+            <div class="col-sm-2">
+              <button type='click' class="btn btn-primary" id="conDown">-</button>
+            </div>
+            <div class="col-sm-2">
+              <button type='click' class="btn btn-primary" id="intDown">-</button>
+            </div>
+            <div class="col-sm-2">
+              <button type='click' class="btn btn-primary" id="wisDown">-</button>
+            </div>
+            <div class="col-sm-2">
+              <button type='click' class="btn btn-primary" id="chaDown">-</button>
+            </div>
+          </div>
+        </div><!--end pointBuy div-->
+
+        <button type="click" class="btn btn-primary" id="nextButtonOne">Next</button>
+        <button type="click" class="btn btn-primary" id="nextButtonTwo">Next</button>
+      </div><!--end builder div-->
     
-    <div id="displayDiv" class="col-md-6">
-      <div class="row">
-        <div class="col-sm-5">
-          <p>Character name: <span id="displayName"></span><p>
+    
+      <div id="displayDiv" class="col-md-6">
+        <div class="row">
+          <div class="col-sm-5">
+            <p>Character name: <span id="displayName"></span><p>
+          </div>
+          <div class="col-sm-4" >
+            <p>Race: <span id="displayRace"></span></p>
+          </div>
+          <div class="col-sm-3">
+            <p>Class: <span id="displayClass"></span></p>
+          </div>
         </div>
-        <div class="col-sm-4" >
-          <p>Race: <span id="displayRace"></span></p>
+        <div class="row">
+          <div class="col-sm-5">
+            <p>Player name: <span id="displayPlayer"></span><p></p>
+          </div>
+          <div class="col-sm-4">
+            <p>Background: <span id="displayBackground"></span></p>
+          </div>
+          <div class="col-sm-3">
+            <p>Alignment: <span id="displayAlignment"></span></p>
+          </div>
         </div>
-        <div class="col-sm-3">
-          <p>Class: <span id="displayClass"></span></p>
+        <div class="row">
+          <div class="row" id="displayStats">
+            <div class="col-sm-2">
+              <div class="row">
+                <p>Strength</p>
+              </div>
+              <div class="row">
+                <p id="displayStr"></p>
+              </div>
+            </div>
+            <div class="col-sm-2">
+              <div class="row">
+                <p>Dexterity</p>
+              </div>
+              <div class="row">
+                <p id="displayDex"></p>
+              </div>
+            </div>
+            <div class="col-sm-2">
+              <div class="row">
+                <p>Constitution</p>
+              </div>
+              <div class="row">
+                <p id="displayCon"></p>
+              </div>
+            </div>
+            <div class="col-sm-2">
+              <div class="row">
+                <p>Intelligence</p>
+              </div>
+              <div class="row">
+                <p id="displayInt"></p>
+              </div>
+            </div>
+            <div class="col-sm-2">
+              <div class="row">
+                <p>Wisdom</p>
+              </div>
+              <div class="row">
+                <p id="displayWis"></p>
+              </div>
+            </div>
+            <div class="col-sm-2">
+              <div class="row">
+                <p>Charisma</p>
+              </div>
+              <div class="row">
+                <p id="displayCha"></p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-sm-5">
-          <p>Player name: <span id="displayPlayer"></span><p></p>
-        </div>
-        <div class="col-sm-4">
-          <p>Background: <span id="displayBackground"></span></p>
-        </div>
-        <div class="col-sm-3">
-          <p>Alignment: <span id="displayAlignment"></span></p>
-        </div>
-      </div>
-        
-    </div>
-  </div>
-  </div>
+    </div><!--end row div-->
+  </div><!--end container div-->
 </body>
 </html>
