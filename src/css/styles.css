@@ -9,3 +9,11 @@ body{
 #nextButtonTwo{
   display: none;
 }
+
+#previousButtonOne{
+  display: none;
+}
+
+#pointBuyPoints{
+  display: none;
+}

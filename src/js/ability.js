@@ -1,4 +1,6 @@
-export default function Ability(name, score){
-  this.name = name;
-  this.score = score;
+export default class Ability{
+  constructor(name, score){
+    this.name = name;
+    this.score = score;
+  }
 }
