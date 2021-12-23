@@ -1,18 +1,46 @@
 import $ from "jquery";
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-//import './css/styles.css';
+import './../css/styles.css';
 import Ability from "./ability.js";
 import Character from "./character.js";
 
+function displayCharacter(currentCharacter){
+  $("#displayText").append(currentCharacter.name + ", " + currentCharacter.race + ", " + currentCharacter.charClass);
+    currentCharacter.abilities.forEach(function(element){
+      $("#displayText").append(element.name + ": " + element.score);
+    });
+}
 
 $(document).ready(function(){
   let currentCharacter;
-  $("#submit").submit(function(event){
+  $("#charName").on("change", function(){
+    let charName = $("#charName").val();
+    $("#displayName").html(charName);
+  });
+
+  $("#playerName").on("change", function(){
+    let playerName = $("#playerName").val();
+    $("#displayPlayer").html(playerName);
+  });
+
+  $("#charRace").on("change", function(){
+    let charRace = $("#charRace").val();
+    $("#displayRace").html(charRace);
+  });
+
+  $("#charClass").on("change", function(){
+    let charClass = $("#charClass").val();
+    $("#displayClass").html(charClass);
+  });
+
+  
+
+  $("#formOne").submit(function(event){
     
     let charName = $("#charName").val();
     let charRace = $("#charRace").val();
-    let charClass = $("charClass").val();
+    let charClass = $("#charClass").val();
     let strValue = $("#str").val();
     let dexValue = $("#dex").val();
     let conValue = $("#con").val();
@@ -31,13 +59,9 @@ $(document).ready(function(){
 
     currentCharacter = new Character(charName, charRace, charClass, abilityArray);
 
-    $("#displayText").append(currentCharacter.name);
-    $("#displayText").append(currentCharacter.race);
-    $("#displayText").append(currentCharacter.class);
-    $("#displayText").append(currentCharacter.abilities);
+    displayCharacter(currentCharacter);
     event.preventDefault();
     
-    
-  })
+  });
 
 });
