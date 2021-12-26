@@ -9,7 +9,7 @@ export default class Character{
     this.pointBuy = 27;
   }
 
-  increaseScore(abilityKey, pointsLeft){
+  increaseScore(abilityKey){
     let scoreValue = this.abilities.get(abilityKey);
     if( scoreValue < 13 && this.pointBuy > 0){
       scoreValue++;
@@ -23,6 +23,23 @@ export default class Character{
       alert("you are out of points!")
     } else{
       alert("Your ability score cannot exceed 15 (before racial modifiers)")
+    }
+  }
+
+  decreaseScore(abilityKey){
+    let scoreValue = this.abilities.get(abilityKey);
+    if(scoreValue >= 8){
+      if(scoreValue <= 13){
+        scoreValue--;
+        this.abilities.set(abilityKey, scoreValue);
+        this.pointBuy++;
+      }else if(scoreValue > 13){
+        scoreValue--;
+        this.abilities.set(abilityKey, scoreValue);
+        this.pointBuy += 2;
+      }
+    } else{
+      alert("You cannot have a score below 8");
     }
   }
 }
