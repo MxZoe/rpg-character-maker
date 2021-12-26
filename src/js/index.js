@@ -2,7 +2,6 @@ import $ from "jquery";
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './../css/styles.css';
-import Ability from "./ability.js";
 import Character from "./character.js";
 /*
   player starts with each stat at 8 and 27 points
