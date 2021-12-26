@@ -18,6 +18,12 @@ function displayScore(abilityMap){
   $("#intNum").html(abilityMap.get('int'));
   $("#wisNum").html(abilityMap.get('wis'));
   $("#chaNum").html(abilityMap.get('cha'));
+  $("#displayNum").html(abilityMap.get('str'));
+  $("#displayNum").html(abilityMap.get('dex'));
+  $("#displayNum").html(abilityMap.get('con'));
+  $("#displayNum").html(abilityMap.get('int'));
+  $("#displayNum").html(abilityMap.get('wis'));
+  $("#displayNum").html(abilityMap.get('cha'));
 }
 
 function attachIncreaseListeners(currentCharacter){
@@ -48,6 +54,39 @@ function attachIncreaseListeners(currentCharacter){
   });
   $("#chaUp").on("click", function(){
     currentCharacter.increaseScore('cha');
+    displayScore(currentCharacter.abilities);
+    $("#pointBuyPoints").html(currentCharacter.pointBuy);
+  });
+}
+
+function attachDecreaseListeners(currentCharacter){
+  $("#strDown").on("click", function(){
+    currentCharacter.decreaseScore('str');
+    displayScore(currentCharacter.abilities);
+    $("#pointBuyPoints").html(currentCharacter.pointBuy);
+  });
+  $("#dexDown").on("click", function(){
+    currentCharacter.decreaseScore('dex');
+    displayScore(currentCharacter.abilities);
+    $("#pointBuyPoints").html(currentCharacter.pointBuy);
+  });
+  $("#conDown").on("click", function(){
+    currentCharacter.decreaseScore('con');
+    displayScore(currentCharacter.abilities);
+    $("#pointBuyPoints").html(currentCharacter.pointBuy);
+  });
+  $("#intDown").on("click", function(){
+    currentCharacter.decreaseScore('int');
+    displayScore(currentCharacter.abilities);
+    $("#pointBuyPoints").html(currentCharacter.pointBuy);
+  });
+  $("#wisDown").on("click", function(){
+    currentCharacter.decreaseScore('wis');
+    displayScore(currentCharacter.abilities);
+    $("#pointBuyPoints").html(currentCharacter.pointBuy);
+  });
+  $("#chaDown").on("click", function(){
+    currentCharacter.decreaseScore('cha');
     displayScore(currentCharacter.abilities);
     $("#pointBuyPoints").html(currentCharacter.pointBuy);
   });
@@ -114,5 +153,6 @@ $(document).ready(function(){
   $("#pointBuyPoints").html(currentCharacter.pointBuy);
   attachFillListeners(currentCharacter);
   attachIncreaseListeners(currentCharacter);
+  attachDecreaseListeners(currentCharacter)
   attachNavListeners();
 });
