@@ -3,57 +3,110 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './../css/styles.css';
 import Character from "./character.js";
-/*
-  player starts with each stat at 8 and 27 points
-  going up costs a point unless stat is 13 or 14 then it costs 2
-  can't go lower than 8 or higher than 15
-*/
 
-
-function displayScore(abilityMap){
-  $("#strNum").html(abilityMap.get('str'));
-  $("#dexNum").html(abilityMap.get('dex'));
-  $("#conNum").html(abilityMap.get('con'));
-  $("#intNum").html(abilityMap.get('int'));
-  $("#wisNum").html(abilityMap.get('wis'));
-  $("#chaNum").html(abilityMap.get('cha'));
-  $("#displayNum").html(abilityMap.get('str'));
-  $("#displayNum").html(abilityMap.get('dex'));
-  $("#displayNum").html(abilityMap.get('con'));
-  $("#displayNum").html(abilityMap.get('int'));
-  $("#displayNum").html(abilityMap.get('wis'));
-  $("#displayNum").html(abilityMap.get('cha'));
+function resetMods(currentCharacter){
+  let raceMods = new Map(
+    [
+      ['str', 0],
+      ['dex', 0],
+      ['con', 0],
+      ['int', 0],
+      ['wis', 0],
+      ['cha', 0]
+    ]
+  )
+  currentCharacter.raceBonus = raceMods;
 }
+//business Logic
+//need to add ability to have increase of choice (human variant), half-elf
+function getRaceMods(currentCharacter){
+  resetMods(currentCharacter);
+  let lowerRace = currentCharacter.race.toLowerCase();
+  switch(lowerRace){
+    case 'dwarf':
+      currentCharacter.raceBonus.set('con', 2);
+      break;
+    case 'elf':
+      currentCharacter.raceBonus.set('dex', 2)
+      break;
+    case "halfling":
+      currentCharacter.raceBonus.set('dex', 2)
+      break;
+    case "human":
+      currentCharacter.raceBonus.set('str', 1);
+      currentCharacter.raceBonus.set('dex', 1);
+      currentCharacter.raceBonus.set('con', 1);
+      currentCharacter.raceBonus.set('int', 1);
+      currentCharacter.raceBonus.set('wis', 1);
+      currentCharacter.raceBonus.set('cha', 1);
+      break;
+    case "dragonborn":
+      currentCharacter.raceBonus.set('str', 2)
+      currentCharacter.raceBonus.set('cha', 1)
+      break;
+    case 'gnome':
+      currentCharacter.raceBonus.set('int', 2);
+      break;
+    case 'half-elf':
+      currentCharacter.raceBonus.set('cha', 2);
+      break;
+    case 'half-orc':
+      currentCharacter.raceBonus.set('str', 2);
+      currentCharacter.raceBonus.set('con', 1);
+      break;
+  }
+}
+function displayScore(currentCharacter){
+  let totalStr = currentCharacter.abilities.get('str') + currentCharacter.raceBonus.get('str');
+  let totalDex = currentCharacter.abilities.get('dex') + currentCharacter.raceBonus.get('dex');
+  let totalCon = currentCharacter.abilities.get('con') + currentCharacter.raceBonus.get('con');
+  let totalInt = currentCharacter.abilities.get('int') + currentCharacter.raceBonus.get('int');
+  let totalWis = currentCharacter.abilities.get('wis') + currentCharacter.raceBonus.get('wis');
+  let totalCha = currentCharacter.abilities.get('cha') + currentCharacter.raceBonus.get('cha');
+  $("#strNum").html(currentCharacter.abilities.get('str'));
+  $("#dexNum").html(currentCharacter.abilities.get('dex'));
+  $("#conNum").html(currentCharacter.abilities.get('con'));
+  $("#intNum").html(currentCharacter.abilities.get('int'));
+  $("#wisNum").html(currentCharacter.abilities.get('wis'));
+  $("#chaNum").html(currentCharacter.abilities.get('cha'));
+  $("#displayStr").html(totalStr);
+  $("#displayDex").html(totalDex);
+  $("#displayCon").html(totalCon);
+  $("#displayInt").html(totalInt);
+  $("#displayWis").html(totalWis);
+  $("#displayCha").html(totalCha);
+}
+
 
 function attachIncreaseListeners(currentCharacter){
   $("#strUp").on("click", function(){
     currentCharacter.increaseScore('str');
-    displayScore(currentCharacter.abilities);
+    displayScore(currentCharacter);
     $("#pointBuyPoints").html(currentCharacter.pointBuy);
   });
   $("#dexUp").on("click", function(){
     currentCharacter.increaseScore('dex');
-    displayScore(currentCharacter.abilities);
+    displayScore(currentCharacter);
     $("#pointBuyPoints").html(currentCharacter.pointBuy);
   });
   $("#conUp").on("click", function(){
     currentCharacter.increaseScore('con');
-    displayScore(currentCharacter.abilities);
+    displayScore(currentCharacter);
     $("#pointBuyPoints").html(currentCharacter.pointBuy);
   });
   $("#intUp").on("click", function(){
     currentCharacter.increaseScore('int');
-    displayScore(currentCharacter.abilities);
+    displayScore(currentCharacter);
     $("#pointBuyPoints").html(currentCharacter.pointBuy);
   });
   $("#wisUp").on("click", function(){
     currentCharacter.increaseScore('wis');
-    displayScore(currentCharacter.abilities);
+    displayScore(currentCharacter);
     $("#pointBuyPoints").html(currentCharacter.pointBuy);
   });
   $("#chaUp").on("click", function(){
     currentCharacter.increaseScore('cha');
-    displayScore(currentCharacter.abilities);
+    displayScore(currentCharacter);
     $("#pointBuyPoints").html(currentCharacter.pointBuy);
   });
 }
@@ -61,35 +114,36 @@ function attachIncreaseListeners(currentCharacter){
 function attachDecreaseListeners(currentCharacter){
   $("#strDown").on("click", function(){
     currentCharacter.decreaseScore('str');
-    displayScore(currentCharacter.abilities);
+    displayScore(currentCharacter);
     $("#pointBuyPoints").html(currentCharacter.pointBuy);
   });
   $("#dexDown").on("click", function(){
     currentCharacter.decreaseScore('dex');
-    displayScore(currentCharacter.abilities);
+    displayScore(currentCharacter);
     $("#pointBuyPoints").html(currentCharacter.pointBuy);
   });
   $("#conDown").on("click", function(){
     currentCharacter.decreaseScore('con');
-    displayScore(currentCharacter.abilities);
+    displayScore(currentCharacter);
     $("#pointBuyPoints").html(currentCharacter.pointBuy);
   });
   $("#intDown").on("click", function(){
     currentCharacter.decreaseScore('int');
-    displayScore(currentCharacter.abilities);
+    displayScore(currentCharacter);
     $("#pointBuyPoints").html(currentCharacter.pointBuy);
   });
   $("#wisDown").on("click", function(){
     currentCharacter.decreaseScore('wis');
-    displayScore(currentCharacter.abilities);
+    displayScore(currentCharacter);
     $("#pointBuyPoints").html(currentCharacter.pointBuy);
   });
   $("#chaDown").on("click", function(){
     currentCharacter.decreaseScore('cha');
-    displayScore(currentCharacter.abilities);
+    displayScore(currentCharacter);
     $("#pointBuyPoints").html(currentCharacter.pointBuy);
   });
 }
+
 function attachNavListeners(){
   $("#nextButtonOne").on("click", function(event){
     $("#nameStuff").hide();
@@ -122,6 +176,8 @@ function attachFillListeners(currentCharacter){
   $("#charRace").on("change", function(){
     currentCharacter.race = $("#charRace").val();
     $("#displayRace").html(currentCharacter.race);
+    getRaceMods(currentCharacter);
+    displayScore(currentCharacter);
   });
   $("#charClass").on("change", function(){
     currentCharacter.charClass = $("#charClass").val();
@@ -141,15 +197,16 @@ $(document).ready(function(){
     ]
   );
 
-  
   currentCharacter.abilities = abilityMap;
-  displayScore(currentCharacter.abilities);
+  resetMods(currentCharacter);
   //have the default of the select inputs be assigned to currentCharacter and displayed
   currentCharacter.race = $("#charRace").val();
   $("#displayRace").html(currentCharacter.race);
+  getRaceMods(currentCharacter);
   currentCharacter.charClass = $("#charClass").val();
   $("#displayClass").html(currentCharacter.charClass);
   $("#pointBuyPoints").html(currentCharacter.pointBuy);
+  displayScore(currentCharacter);
   attachFillListeners(currentCharacter);
   attachIncreaseListeners(currentCharacter);
   attachDecreaseListeners(currentCharacter)

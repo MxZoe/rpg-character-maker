@@ -1,9 +1,11 @@
 
 export default class Character{
-  constructor(name, player, race, charClass, abilities){
+  constructor(name, player, race, subrace, charClass, abilities){
     this.name = name;
     this.player = player;
     this.race = race;
+    this.raceBonus;
+    this.subrace = subrace;
     this.charClass = charClass;
     this.abilities = abilities;
     this.pointBuy = 27;
@@ -42,4 +44,6 @@ export default class Character{
       alert("You cannot have a score below 8");
     }
   }
+
+
 }
