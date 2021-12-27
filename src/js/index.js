@@ -3,7 +3,7 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './../css/styles.css';
 import Character from "./character.js";
-
+//business Logic
 function resetMods(currentCharacter){
   let raceMods = new Map(
     [
@@ -17,7 +17,7 @@ function resetMods(currentCharacter){
   )
   currentCharacter.raceBonus = raceMods;
 }
-//business Logic
+
 //need to add ability to have increase of choice (human variant), half-elf
 function getRaceMods(currentCharacter){
   resetMods(currentCharacter);
@@ -25,12 +25,27 @@ function getRaceMods(currentCharacter){
   switch(lowerRace){
     case 'dwarf':
       currentCharacter.raceBonus.set('con', 2);
+      $("#dwarfSub").show();
+      $("#gnomeSub").hide();
+      $("#elfSub").hide()
+      $("#dragonbornSub").hide();
+      $("#halflingSub").hide();
       break;
     case 'elf':
       currentCharacter.raceBonus.set('dex', 2)
+      $("#elfSub").show()
+      $("#dwarfSub").hide();
+      $("#gnomeSub").hide();
+      $("#dragonbornSub").hide();
+      $("#halflingSub").hide();
       break;
     case "halfling":
       currentCharacter.raceBonus.set('dex', 2)
+      $("#halflingSub").show();
+      $("#dwarfSub").hide();
+      $("#gnomeSub").hide();
+      $("#elfSub").hide()
+      $("#dragonbornSub").hide();
       break;
     case "human":
       currentCharacter.raceBonus.set('str', 1);
@@ -39,23 +54,58 @@ function getRaceMods(currentCharacter){
       currentCharacter.raceBonus.set('int', 1);
       currentCharacter.raceBonus.set('wis', 1);
       currentCharacter.raceBonus.set('cha', 1);
+      $("#dwarfSub").hide();
+      $("#gnomeSub").hide();
+      $("#elfSub").hide()
+      $("#dragonbornSub").hide();
+      $("#halflingSub").hide();
       break;
     case "dragonborn":
       currentCharacter.raceBonus.set('str', 2)
       currentCharacter.raceBonus.set('cha', 1)
+      $("#dragonbornSub").show();
+      $("#dwarfSub").hide();
+      $("#gnomeSub").hide();
+      $("#elfSub").hide()
+      $("#halflingSub").hide();
       break;
     case 'gnome':
       currentCharacter.raceBonus.set('int', 2);
+      $("#gnomeSub").show();
+      $("#dwarfSub").hide();
+      $("#elfSub").hide()
+      $("#dragonbornSub").hide();
+      $("#halflingSub").hide();
       break;
     case 'half-elf':
       currentCharacter.raceBonus.set('cha', 2);
+      $("#dwarfSub").hide();
+      $("#gnomeSub").hide();
+      $("#elfSub").hide()
+      $("#halflingSub").hide();
+      $("#dragonbornSub").hide();
       break;
     case 'half-orc':
       currentCharacter.raceBonus.set('str', 2);
       currentCharacter.raceBonus.set('con', 1);
+      $("#dwarfSub").hide();
+      $("#gnomeSub").hide();
+      $("#elfSub").hide()
+      $("#dragonbornSub").hide();
+      $("#halflingSub").hide();
+      break;
+    case 'tiefling':
+      currentCharacter.raceBonus.set('int', 1);
+      currentCharacter.raceBonus.set('cha', 2);
+      $("#gnomeSub").hide();
+      $("#dwarfSub").hide();
+      $("#elfSub").hide()
+      $("#dragonbornSub").hide();
+      $("#halflingSub").hide();
       break;
   }
 }
+
 function displayScore(currentCharacter){
   let totalStr = currentCharacter.abilities.get('str') + currentCharacter.raceBonus.get('str');
   let totalDex = currentCharacter.abilities.get('dex') + currentCharacter.raceBonus.get('dex');
@@ -75,8 +125,13 @@ function displayScore(currentCharacter){
   $("#displayInt").html(totalInt);
   $("#displayWis").html(totalWis);
   $("#displayCha").html(totalCha);
+  $("#strBonus").html(currentCharacter.raceBonus.get('str'));
+  $("#dexBonus").html(currentCharacter.raceBonus.get('dex'));
+  $("#conBonus").html(currentCharacter.raceBonus.get('con'));
+  $("#intBonus").html(currentCharacter.raceBonus.get('int'));
+  $("#wisBonus").html(currentCharacter.raceBonus.get('wis'));
+  $("#chaBonus").html(currentCharacter.raceBonus.get('cha'));
 }
-
 
 function attachIncreaseListeners(currentCharacter){
   $("#strUp").on("click", function(){
