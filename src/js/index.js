@@ -20,9 +20,9 @@ function resetMods(currentCharacter){
 
 //need to add ability to have increase of choice (human variant), half-elf
 function getRaceMods(currentCharacter){
-  resetMods(currentCharacter);
-  let lowerRace = currentCharacter.race.toLowerCase();
-  switch(lowerRace){
+  
+  
+  switch(currentCharacter.race.toLowerCase()){
     case 'dwarf':
       currentCharacter.raceBonus.set('con', 2);
       $("#dwarfSub").show();
@@ -104,6 +104,13 @@ function getRaceMods(currentCharacter){
       $("#halflingSub").hide();
       break;
   }
+}
+
+function getSubMods(currentCharacter){
+  getSubrace(currentCharacter);
+  switch(currentCharacter.subrace.toLowerCase){
+  }
+
 }
 
 function displayScore(currentCharacter){
@@ -231,13 +238,37 @@ function attachFillListeners(currentCharacter){
   $("#charRace").on("change", function(){
     currentCharacter.race = $("#charRace").val();
     $("#displayRace").html(currentCharacter.race);
+    resetMods(currentCharacter);
     getRaceMods(currentCharacter);
+    getSubMods(currentCharacter);
     displayScore(currentCharacter);
   });
   $("#charClass").on("change", function(){
     currentCharacter.charClass = $("#charClass").val();
     $("#displayClass").html(currentCharacter.charClass);
   });
+}
+function getSubrace(currentCharacter){
+  switch(currentCharacter.race.toLowerCase()){
+    case 'dwarf':
+      currentCharacter.subrace = $("#dwarfSub").val();
+    case 'elf':
+      currentCharacter.subrace = $("#elfSub").val();
+    case 'halfling':
+      currentCharacter.subrace = $("#halflingSub").val();
+    case 'human':
+      currentCharacter.subrace = "";
+    case 'dragonborn':
+      currentCharacter.subrace = $("#dragonbornSub").val();
+    case 'gnome':
+      currentCharacter.subrace = $("#gnomeSub").val();
+    case 'half-elf':
+      currentCharacter.subrace = "";
+    case 'half-orc':
+      currentCharacter.subrace = "";
+    case 'tiefling':
+      currentCharacter.subrace = "";
+  }
 }
 $(document).ready(function(){
   let currentCharacter = new Character();

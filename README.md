@@ -1,7 +1,5 @@
 To do:
 change formating to es6
-change abilities from regular object to Map
-Make Race object
 add ability score generation
   -point buy
   -standard array
@@ -19,9 +17,11 @@ add ability score generation
   -Roll 3d6 twelve times and keep the best six rolls.
   -Roll 3d6 six times for each ability score and keep the highest rolls.
 
-add a playerName attribute to Character
 add background
 add proficiences
 add feats?
 
+Next up:
+display subrace
+subrace stats
 

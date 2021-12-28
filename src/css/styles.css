@@ -17,3 +17,23 @@ body{
 #pointBuyPoints{
   display: none;
 }
+
+#dwarfSub{
+  display: none;
+}
+
+#elfSub{
+  display: none;
+}
+
+#halflingSub{
+  display: none;
+}
+
+#dragonbornSub{
+  display: none;
+}
+
+#gnomeSub{
+  display: none;
+}
